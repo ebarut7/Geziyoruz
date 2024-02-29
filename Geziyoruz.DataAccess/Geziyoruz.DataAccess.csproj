@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Geziyoruz.Entities\Geziyoruz.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\EntityFrameworkCore\Mappings\" />
+  </ItemGroup>
+
 </Project>
