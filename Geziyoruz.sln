@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geziyoruz.Entities", "Geziyoruz.Entities\Geziyoruz.Entities.csproj", "{BAF12FAA-869B-4FC8-8693-852FC0DCBAB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geziyoruz.Entities", "Geziyoruz.Entities\Geziyoruz.Entities.csproj", "{BAF12FAA-869B-4FC8-8693-852FC0DCBAB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geziyoruz.DataAccess", "Geziyoruz.DataAccess\Geziyoruz.DataAccess.csproj", "{7BF5F58F-7C16-4FEB-B4F4-BD0E75882373}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BAF12FAA-869B-4FC8-8693-852FC0DCBAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF12FAA-869B-4FC8-8693-852FC0DCBAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAF12FAA-869B-4FC8-8693-852FC0DCBAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF5F58F-7C16-4FEB-B4F4-BD0E75882373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF5F58F-7C16-4FEB-B4F4-BD0E75882373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF5F58F-7C16-4FEB-B4F4-BD0E75882373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF5F58F-7C16-4FEB-B4F4-BD0E75882373}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
