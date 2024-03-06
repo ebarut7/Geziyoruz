@@ -1,4 +1,5 @@
-﻿using Geziyoruz.Entities.Concrete;
+﻿using Geziyoruz.Core.DataAccess.EntityFrameworkCore.Mappings;
+using Geziyoruz.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

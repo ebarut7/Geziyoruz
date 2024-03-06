@@ -1,8 +1,8 @@
-﻿using Geziyoruz.Entities.Abstract;
+﻿using Geziyoruz.Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Mappings
+namespace Geziyoruz.Core.DataAccess.EntityFrameworkCore.Mappings
 {
     public class EntityMap<T> : IEntityTypeConfiguration<T> where T : class, IEntity, new()
     {

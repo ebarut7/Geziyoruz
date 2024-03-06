@@ -1,5 +1,7 @@
 ﻿
 
+using Geziyoruz.Core.Entities;
+
 namespace Geziyoruz.Entities.Abstract
 {
     public abstract class BaseEntity : IEntity

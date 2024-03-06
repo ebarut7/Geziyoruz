@@ -1,5 +1,6 @@
 ﻿
 
+using Geziyoruz.Core.DataAccess.EntityFrameworkCore.Mappings;
 using Geziyoruz.Entities.Concrete;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

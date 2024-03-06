@@ -1,6 +1,6 @@
 ﻿
 
-namespace HizliSec.Core.Entities
+namespace Geziyoruz.Core.Entities
 {
     public interface IEntity
     {

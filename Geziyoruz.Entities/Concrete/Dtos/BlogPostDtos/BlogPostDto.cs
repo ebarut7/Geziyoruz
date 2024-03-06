@@ -1,6 +1,4 @@
-﻿
-
-using Geziyoruz.Entities.Abstract;
+﻿using Geziyoruz.Core.Entities;
 
 namespace Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos
 {

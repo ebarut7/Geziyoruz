@@ -1,4 +1,4 @@
-﻿using Geziyoruz.Entities.Abstract;
+﻿using Geziyoruz.Core.Entities;
 using Microsoft.AspNetCore.Http;
 
 
