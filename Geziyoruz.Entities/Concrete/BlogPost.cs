@@ -1,4 +1,4 @@
-﻿
+﻿using Geziyoruz.Core.Entites;
 
 using Geziyoruz.Entities.Abstract;
 

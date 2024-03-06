@@ -1,9 +1,5 @@
-﻿using Geziyoruz.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Geziyoruz.Entities.Abstract;
 
 namespace Geziyoruz.Entities.Concrete
 {
