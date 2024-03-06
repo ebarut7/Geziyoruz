@@ -1,4 +1,5 @@
 ﻿
+using Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Mappings;
 using Geziyoruz.Entities.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Mapler yazılacak
-            //builder.ApplyConfiguration(new Map());
 
-
+            builder.ApplyConfiguration(new AdminMap());
+            builder.ApplyConfiguration(new AppUserMap());
+            builder.ApplyConfiguration(new BlogPostMap());
+            builder.ApplyConfiguration(new CustomerMap());
+            builder.ApplyConfiguration(new PictureMap());
 
 
             base.OnModelCreating(builder);
