@@ -2,7 +2,7 @@
 
 namespace Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos
 {
-    public class BlogPost : IDto
+    public class BlogPostAddDto : IDto
     {
         public string Title { get; set; }
         public string Paragraph { get; set; }

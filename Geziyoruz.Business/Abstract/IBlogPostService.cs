@@ -1,6 +1,4 @@
-﻿
-
-using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos;
+﻿using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos;
 
 namespace Geziyoruz.Business.Abstract
 {
@@ -8,6 +6,12 @@ namespace Geziyoruz.Business.Abstract
     {
         Task<BlogPostDto> GetByIdAsync(int id);
         Task<List<BlogPostDto>> GetAllAsync();
+
         Task<int> AddAsync(BlogPostAddDto blogPostAddDto);
+
+        Task<int> DeleteAsync(int id);
+
+        Task<int> UpdateAsync(BlogPostDto blogPostDto);
+
     }
 }
