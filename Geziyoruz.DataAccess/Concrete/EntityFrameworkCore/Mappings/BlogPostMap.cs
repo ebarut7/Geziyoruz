@@ -11,6 +11,8 @@ namespace Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Mappings
         public override void Configure(EntityTypeBuilder<BlogPost> builder)
         {
             builder.HasKey(x => x.Id);
+
+            builder.HasOne(x => x.Picture).WithOne(x=>x.BlogPost);
             base.Configure(builder);
         }
     }

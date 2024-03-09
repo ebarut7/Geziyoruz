@@ -8,7 +8,6 @@ namespace Geziyoruz.Entities.Concrete
     {
         public int Id { get; set; }
         public string Image { get; set; }
-        public int BlogPostId { get; set; }
         public BlogPost BlogPost { get; set; }
 
     }
