@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Blog Admin Paneli</title>
+    <link rel="stylesheet" href="~/css/adminpanel.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Admin Paneli</h2>
+            <ul>
+                <li><a href="#" class="active" onclick="openTab('yaziEkle')">Yazı Ekle</a></li>
+                <li><a href="#" onclick="openTab('kullaniciGoruntule')">Kullanıcıları Görüntüle</a></li>
+            </ul>
+            <div class="footer">
+                <ul>
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Hakkımda</a></li>
+                    <li><a href="#">İletişim</a></li>
+                    <li><a href="#" onclick="logout()">Çıkış</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content" id="yaziEkle">
+            <div class="form-container">
+                <h2>Yazı Ekle</h2>
+                <form asp-action="AddBlogPost" method="post">
+                    <div class="form-group">
+                        <label for="foto">Fotoğraf:</label>
+                        <input type="file" id="foto" name="Picture">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Başlık:</label>
+                        <input type="text" id="title" name="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">İçerik:</label>
+                        <textarea id="content" name="Paragraph" rows="6"></textarea>
+                    </div>
+                    <button type="submit">Gönder</button>
+                </form>
+            </div>
+        </div>
+        <div class="content" id="kullaniciGoruntule" style="display:none;">
+            <h2>Kullanıcıları Görüntüle</h2>
+            <!-- Kullanıcıları listeleme alanı -->
+        </div>
+    </div>
+    <script src="~/js/adminpanel.js"></script>
+    <script>
+        function logout() {
+            // Burada kullanıcının oturumunu sonlandıran bir işlem yapılabilir.
+            // Örneğin, kullanıcının tarayıcıda sakladığı oturum bilgilerini temizlemek gibi.
+            alert("Çıkış yapıldı");
+        }
+    </script>
+</body>
+</html>

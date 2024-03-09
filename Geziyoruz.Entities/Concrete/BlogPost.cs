@@ -9,6 +9,8 @@ namespace Geziyoruz.Entities.Concrete
         public int Id { get; set; }
         public string Title { get; set; }
         public string Paragraph { get; set; }
+
+        public int PictureId { get; set; }
         public Picture Picture { get; set; }
     }
 }
