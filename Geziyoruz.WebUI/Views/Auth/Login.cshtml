@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Portal</title>
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <button class="toggle-btn" id="signInBtn">Login</button>
+        <button class="toggle-btn" id="signUpBtn">Sign Up</button>
+        <div class="form-container">
+            <div class="form sign-in-form">
+                <h1>Sign In</h1>
+                <form asp-action="Login" method="post">
+                    <input type="text" placeholder="Username" required />
+                    <input type="password" placeholder="Password" required />
+                    <button class="submit-btn">Sign In</button>
+                </form>
+            </div>
+            <div class="form sign-up-form">
+                <h1>Sign Up</h1>
+                <form asp-action="Register" method="post">
+                    <input type="text" placeholder="FirstName" name="FirstName" required />
+                    <input type="text" placeholder="LastName" name="LastName" required />
+                    <input type="email" placeholder="Email" name="Email" required />
+                    <input type="text" placeholder="UserName" name="UserName" required />
+                    <input type="password" placeholder="Password" name="Password" required />
+                    <input type="tel" placeholder="Phone Number" name="PhoneNumber" required />
+                    <input type="text" placeholder="Address" name="Address" required />
+                    <button class="submit-btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/login.js"></script>
+</body>
+</html>
