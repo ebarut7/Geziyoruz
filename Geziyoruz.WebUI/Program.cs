@@ -25,7 +25,7 @@ IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 // AddDbContext
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string? connectionString = builder.Configuration.GetConnectionString("connect");
 builder.Services.AddDbContext<GeziyoruzContext>(x => x.UseSqlServer(connectionString));
 
 // Identity

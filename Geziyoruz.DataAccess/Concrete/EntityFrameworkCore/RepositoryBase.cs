@@ -1,4 +1,5 @@
-﻿using Geziyoruz.DataAccess.Abstract;
+﻿using Geziyoruz.Core.Entities;
+using Geziyoruz.DataAccess.Abstract;
 using Geziyoruz.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
