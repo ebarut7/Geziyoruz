@@ -1,6 +1,9 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Geziyoruz.Business.DependencyResolvers.AutoFac;
+using Geziyoruz.Business.DependencyResolvers.Extension;
+using Geziyoruz.Business.Insfrastructure.AutoMapper;
 using Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Context;
 using Geziyoruz.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +16,7 @@ builder.Services.AddControllersWithViews();
 
 //AutoFac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new BusinessModule()));
+.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new BusinessModule()));
 builder.Services.Register();
 
 // AutoMapper
