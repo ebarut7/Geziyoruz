@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Geziyoruz.Business\Geziyoruz.Business.csproj" />
+    <ProjectReference Include="..\Geziyoruz.DataAccess\Geziyoruz.DataAccess.csproj" />
+    <ProjectReference Include="..\Geziyoruz.Entities\Geziyoruz.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
