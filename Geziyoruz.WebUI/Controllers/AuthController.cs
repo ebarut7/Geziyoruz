@@ -19,10 +19,10 @@ namespace Geziyoruz.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginDto loginDto) 
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
             Microsoft.AspNetCore.Identity.SignInResult response = await _authService.LoginAsync(loginDto);
-            if(response.Succeeded)
+            if (response.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -30,10 +30,41 @@ namespace Geziyoruz.WebUI.Controllers
         }
         [HttpPost]
 
-        public async Task<IActionResult> Register(CustomerRegisterDto customerRegisterDto) 
+        public async Task<IActionResult> Register(CustomerRegisterDto customerRegisterDto)
         {
             bool response = (await _authService.CustomerRegisterAsync(customerRegisterDto)).Succeeded;
+            
             return RedirectToAction("Home", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AdminLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdminLogin(LoginDto loginDto)
+        {
+            Microsoft.AspNetCore.Identity.SignInResult response = await _authService.LoginAsync(loginDto);
+            var user = await _authService.GetUserAsync(loginDto.UserName);
+            var getRole= await _authService.GetRolesAsync(user);
+            if (response.Succeeded && getRole.Contains("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> AdminRegister(AdminRegisterDto adminRegisterDto)
+        {
+            if (adminRegisterDto.Code == "985463")
+            {
+                bool response= (await _authService.AdminRegisterAsync(adminRegisterDto)).Succeeded;
+                return RedirectToAction("Admin","Panel");
+            }
+            return RedirectToAction("Login");
         }
     }
 }

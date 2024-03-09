@@ -13,6 +13,8 @@ namespace Geziyoruz.Business.Insfrastructure.AutoMapper
         public MapperProfile() 
         {
             CreateMap<Admin,AdminDto>().ReverseMap();
+            CreateMap<Admin,AdminRegisterDto>().ReverseMap();
+            CreateMap<Customer, CustomerRegisterDto>().ReverseMap();
             CreateMap<AppUser,AdminRegisterDto>().ReverseMap();
             CreateMap<AppUser, CustomerRegisterDto>().ReverseMap();
             CreateMap<Customer,CustomerDto>().ReverseMap();
