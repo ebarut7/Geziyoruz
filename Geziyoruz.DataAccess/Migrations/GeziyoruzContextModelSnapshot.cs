@@ -145,7 +145,10 @@ namespace Geziyoruz.DataAccess.Migrations
             modelBuilder.Entity("Geziyoruz.Entities.Concrete.BlogPost", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Paragraph")
                         .IsRequired()
@@ -179,10 +182,7 @@ namespace Geziyoruz.DataAccess.Migrations
             modelBuilder.Entity("Geziyoruz.Entities.Concrete.Picture", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -307,17 +307,6 @@ namespace Geziyoruz.DataAccess.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Geziyoruz.Entities.Concrete.BlogPost", b =>
-                {
-                    b.HasOne("Geziyoruz.Entities.Concrete.Picture", "Picture")
-                        .WithOne("BlogPost")
-                        .HasForeignKey("Geziyoruz.Entities.Concrete.BlogPost", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Picture");
-                });
-
             modelBuilder.Entity("Geziyoruz.Entities.Concrete.Customer", b =>
                 {
                     b.HasOne("Geziyoruz.Entities.Concrete.AppUser", "AppUser")
@@ -327,6 +316,17 @@ namespace Geziyoruz.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Geziyoruz.Entities.Concrete.Picture", b =>
+                {
+                    b.HasOne("Geziyoruz.Entities.Concrete.BlogPost", "BlogPost")
+                        .WithMany("Picture")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogPost");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -389,10 +389,9 @@ namespace Geziyoruz.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Geziyoruz.Entities.Concrete.Picture", b =>
+            modelBuilder.Entity("Geziyoruz.Entities.Concrete.BlogPost", b =>
                 {
-                    b.Navigation("BlogPost")
-                        .IsRequired();
+                    b.Navigation("Picture");
                 });
 #pragma warning restore 612, 618
         }

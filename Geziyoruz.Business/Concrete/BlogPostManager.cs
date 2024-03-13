@@ -12,35 +12,54 @@ namespace Geziyoruz.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IPictureService _pictureService;
 
-        public BlogPostManager(IUnitOfWork unitOfWork, IMapper mapper, IPictureService pictureService )
+        public BlogPostManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _pictureService = pictureService;
         }
 
-        public Task<int> AddAsync(BlogPostAddDto blogPostAddDto)
+        public async Task<int> AddAsync(BlogPostAddDto blogPostAddDto)
         {
             BlogPost blogPost = new BlogPost();
-            Picture picture = new Picture();
-            picture.Image = blogPostAddDto.Picture;
-            
-            blogPost.Picture= picture;
+            List<Picture> picture = new List<Picture>();
+
+
+
+            foreach (var item in blogPostAddDto.Pictures)
+            {
+                if (item.Length > 0)
+                {
+                    string fileExtension = Path.GetExtension(item.FileName).ToLowerInvariant();
+                    if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".gif")
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            await item.CopyToAsync(ms);
+                            byte[] fileBytes = ms.ToArray();
+                            string base64String = Convert.ToBase64String(fileBytes);
+                            picture.Add(new Picture() { Image = base64String });
+                        }
+
+                    }
+                }
+
+            }
+
+            blogPost.Picture = picture;
             blogPost.Title = blogPostAddDto.Title;
             blogPost.Paragraph = blogPostAddDto.Paragraph;
 
 
 
 
-            _unitOfWork.BlogPostDal.AddAsync(blogPost);
-            return _unitOfWork.SaveAsync();
+            await _unitOfWork.BlogPostDal.AddAsync(blogPost);
+            return await _unitOfWork.SaveAsync();
         }
 
         public async Task<int> DeleteAsync(int id)
         {
-            BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x=>x.Id==id);
+            BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x => x.Id == id);
             await _unitOfWork.BlogPostDal.DeleteAsync(blogPost);
             return await _unitOfWork.SaveAsync();
         }
@@ -52,7 +71,7 @@ namespace Geziyoruz.Business.Concrete
             foreach (var item in blogPosts)
             {
                 BlogPostDto blogPostDto = _mapper.Map<BlogPostDto>(item);
-                blogPostDto.Picture = (await _unitOfWork.PictureDal.GetAsync(x => x.Id == item.Id)) .Image;
+                blogPostDto.Picture = (await _unitOfWork.PictureDal.GetAsync(x => x.Id == item.Id)).Image;
                 blogPostDtos.Add(blogPostDto);
             }
             return blogPostDtos;
@@ -60,7 +79,7 @@ namespace Geziyoruz.Business.Concrete
 
         public async Task<BlogPostDto> GetByIdAsync(int id)
         {
-            BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x=>x.Id==id);
+            BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x => x.Id == id);
             return _mapper.Map<BlogPostDto>(blogPost);
         }
 

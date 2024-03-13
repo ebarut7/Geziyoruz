@@ -26,23 +26,9 @@ namespace Geziyoruz.WebUI.Controllers
             return View();
         }
         [HttpPost]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> AddBlogPost(BlogPostAddDto blogPostAddDto,PictureAddDto pictureAddDto)
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> AddBlogPost(BlogPostAddDto blogPostAddDto)
         {
-
-            await _pictureService.Add(pictureAddDto);
-            foreach (var item in pictureAddDto.Pictures)
-            {
-                MemoryStream ms= new MemoryStream();
-                item.CopyTo(ms);
-                byte[] fileBytes = ms.ToArray();
-              string base64string=  Convert.ToBase64String(fileBytes);
-                blogPostAddDto.Picture = base64string;
-            }
-            
-           // if attıgın yere git
-
-
             int res = await _blogPostService.AddAsync(blogPostAddDto);
             return res > 0 ? RedirectToAction("Index","Home") : View();
         }

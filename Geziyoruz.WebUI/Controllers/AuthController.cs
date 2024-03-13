@@ -62,7 +62,7 @@ namespace Geziyoruz.WebUI.Controllers
             if (adminRegisterDto.Code == "985463")
             {
                 bool response= (await _authService.AdminRegisterAsync(adminRegisterDto)).Succeeded;
-                return RedirectToAction("Admin","Panel");
+                return RedirectToAction("Panel","Admin");
             }
             return RedirectToAction("Login");
         }

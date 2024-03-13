@@ -10,6 +10,6 @@ namespace Geziyoruz.Entities.Concrete
         public string Title { get; set; }
         public string Paragraph { get; set; }
         public int PictureId { get; set; }
-        public Picture Picture { get; set; } = new();
+        public ICollection<Picture> Picture { get; set; }
     }
 }
