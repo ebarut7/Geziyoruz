@@ -1,4 +1,5 @@
-﻿using Geziyoruz.WebUI.Models;
+﻿using Geziyoruz.Business.Abstract;
+using Geziyoruz.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,17 @@ namespace Geziyoruz.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBlogPostService _blogPostService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IBlogPostService blogPostService)
         {
-            _logger = logger;
+            _blogPostService = blogPostService;
         }
 
         public IActionResult Index()
         {
-            return View();
+          
+            return View(_blogPostService.GetAllAsync().Result);
         }
 
         public IActionResult Privacy()

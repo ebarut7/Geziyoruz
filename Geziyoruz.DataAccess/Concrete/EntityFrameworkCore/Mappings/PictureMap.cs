@@ -11,7 +11,7 @@ namespace Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Mappings
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.BlogPost).WithOne(x=>x.Picture);
+            builder.HasOne(x => x.BlogPost).WithOne(x=>x.Picture).HasForeignKey<BlogPost>(x=>x.Id);
             base.Configure(builder);
         }
     }

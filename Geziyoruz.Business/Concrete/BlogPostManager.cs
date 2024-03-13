@@ -4,6 +4,7 @@ using AutoMapper;
 using Geziyoruz.Business.Abstract;
 using Geziyoruz.Entities.Concrete;
 using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos;
+using Geziyoruz.Entities.Concrete.Dtos.PictureDtos;
 
 namespace Geziyoruz.Business.Concrete
 {
@@ -11,16 +12,28 @@ namespace Geziyoruz.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPictureService _pictureService;
 
-        public BlogPostManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public BlogPostManager(IUnitOfWork unitOfWork, IMapper mapper, IPictureService pictureService )
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _pictureService = pictureService;
         }
 
         public Task<int> AddAsync(BlogPostAddDto blogPostAddDto)
         {
-            BlogPost blogPost= _mapper.Map<BlogPost>(blogPostAddDto);
+            BlogPost blogPost = new BlogPost();
+            Picture picture = new Picture();
+            picture.Image = blogPostAddDto.Picture;
+            
+            blogPost.Picture= picture;
+            blogPost.Title = blogPostAddDto.Title;
+            blogPost.Paragraph = blogPostAddDto.Paragraph;
+
+
+
+
             _unitOfWork.BlogPostDal.AddAsync(blogPost);
             return _unitOfWork.SaveAsync();
         }
@@ -39,6 +52,7 @@ namespace Geziyoruz.Business.Concrete
             foreach (var item in blogPosts)
             {
                 BlogPostDto blogPostDto = _mapper.Map<BlogPostDto>(item);
+                blogPostDto.Picture = (await _unitOfWork.PictureDal.GetAsync(x => x.Id == item.Id)) .Image;
                 blogPostDtos.Add(blogPostDto);
             }
             return blogPostDtos;

@@ -22,7 +22,7 @@ namespace Geziyoruz.Business.Concrete
                 {
                     // Dosya uzantisini aliyoruz.
                     string fileExtension = Path.GetExtension(item.FileName).ToLowerInvariant();
-                    if (!string.IsNullOrEmpty(fileExtension) && IsSupportedFileExtension(fileExtension) && IsWithinFileSizeLimit(item.Length))
+                    if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".gif")
                     {
                         using (MemoryStream ms = new MemoryStream())
                         {

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Geziyoruz.DataAccess.Migrations
 {
     [DbContext(typeof(GeziyoruzContext))]
-    [Migration("20240309211454_gez")]
+    [Migration("20240312132627_gez")]
     partial class gez
     {
         /// <inheritdoc />
@@ -148,10 +148,7 @@ namespace Geziyoruz.DataAccess.Migrations
             modelBuilder.Entity("Geziyoruz.Entities.Concrete.BlogPost", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Paragraph")
                         .IsRequired()
@@ -165,8 +162,6 @@ namespace Geziyoruz.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("Blogs");
                 });
@@ -191,6 +186,9 @@ namespace Geziyoruz.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -318,8 +316,8 @@ namespace Geziyoruz.DataAccess.Migrations
             modelBuilder.Entity("Geziyoruz.Entities.Concrete.BlogPost", b =>
                 {
                     b.HasOne("Geziyoruz.Entities.Concrete.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId")
+                        .WithOne("BlogPost")
+                        .HasForeignKey("Geziyoruz.Entities.Concrete.BlogPost", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -394,6 +392,12 @@ namespace Geziyoruz.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Geziyoruz.Entities.Concrete.Picture", b =>
+                {
+                    b.Navigation("BlogPost")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

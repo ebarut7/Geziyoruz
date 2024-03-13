@@ -1,8 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos
+@{
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model List<BlogPostDto>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Blogu</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gezi Blogu</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Admin</a></li>
+                    <li><a href="#">Anasayfa</a></li>
+                    <li><a href="#">Geziler</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main">
+        <div class="container">
+            @foreach (BlogPostDto blogPostDto in Model)
+            {
+                <article>
+                        <img src="data:image/jpeg;base64,@blogPostDto.Picture" alt="Gezi 1">
+                    <h2>Gezi Başlığı 1</h2>
+                    <p>@blogPostDto.Paragraph</p>
+                </article>
+            }
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Tüm hakları saklıdır. &copy; 2024 Gezi Blogu</p>
+        </div>
+    </footer>
+</body>
+</html>
+

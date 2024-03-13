@@ -51,7 +51,7 @@ namespace Geziyoruz.WebUI.Controllers
             var getRole= await _authService.GetRolesAsync(user);
             if (response.Succeeded && getRole.Contains("admin"))
             {
-                return RedirectToAction("Admin", "Panel");
+                return RedirectToAction("Panel","Admin");
             }
             return View();
         }
