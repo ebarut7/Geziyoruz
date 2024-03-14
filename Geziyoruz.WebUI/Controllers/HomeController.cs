@@ -7,7 +7,6 @@ namespace Geziyoruz.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IBlogPostService _blogPostService;
 
         public HomeController(IBlogPostService blogPostService)

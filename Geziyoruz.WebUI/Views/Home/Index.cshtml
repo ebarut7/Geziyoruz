@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gezi Blogu</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="~/css/index.css">
 </head>
 <body>
     <header>
@@ -34,7 +34,7 @@
             {
                 <article>
                         <img src="data:image/jpeg;base64,@blogPostDto.Picture" alt="Gezi 1">
-                    <h2>Gezi Başlığı 1</h2>
+                    <h2>@blogPostDto.Title</h2>
                     <p>@blogPostDto.Paragraph</p>
                 </article>
             }
