@@ -80,14 +80,41 @@ namespace Geziyoruz.Business.Concrete
         public async Task<BlogPostDto> GetByIdAsync(int id)
         {
             BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x => x.Id == id);
-            List<Picture> picture = new();
-            blogPost.Picture = picture;
+            //List<Picture> picture = new();
+            //blogPost.Picture = picture;
             return _mapper.Map<BlogPostDto>(blogPost);
         }
 
         public async Task<int> UpdateAsync(BlogPostDto blogPostDto)
         {
-            BlogPost blogPost = _mapper.Map<BlogPost>(blogPostDto);
+            BlogPost blogPost = new BlogPost();
+            List<Picture> picture = new List<Picture>();
+
+
+
+            foreach (var item in blogPostDto.Pictures)
+            {
+                if (item.Length > 0)
+                {
+                    string fileExtension = Path.GetExtension(item.FileName).ToLowerInvariant();
+                    if (fileExtension == ".jpg" || fileExtension == ".png" || fileExtension == ".gif")
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            await item.CopyToAsync(ms);
+                            byte[] fileBytes = ms.ToArray();
+                            string base64String = Convert.ToBase64String(fileBytes);
+                            picture.Add(new Picture() { Image = base64String });
+                        }
+
+                    }
+                }
+
+            }
+
+            blogPost.Picture = picture;
+            blogPost.Title = blogPostDto.Title;
+            blogPost.Paragraph = blogPostDto.Paragraph;
             await _unitOfWork.BlogPostDal.UpdateAsync(blogPost);
             return await _unitOfWork.SaveAsync();
         }
