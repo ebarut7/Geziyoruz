@@ -19,8 +19,8 @@
             <div class="form sign-in-form">
                 <h1>Sign In</h1>
                 <form asp-action="Login" method="post">
-                    <input type="text" placeholder="Username" required />
-                    <input type="password" placeholder="Password" required />
+                    <input type="text" placeholder="Username" name="UserName" required />
+                    <input type="password" placeholder="Password" name="Password" required />
                     <button class="submit-btn">Sign In</button>
                     @Html.ActionLink("Adminim","AdminLogin")
                 </form>

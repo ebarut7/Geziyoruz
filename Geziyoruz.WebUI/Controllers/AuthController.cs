@@ -22,7 +22,9 @@ namespace Geziyoruz.WebUI.Controllers
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             Microsoft.AspNetCore.Identity.SignInResult response = await _authService.LoginAsync(loginDto);
-            if (response.Succeeded)
+            var user = await _authService.GetUserAsync(loginDto.UserName);
+            var getRole = await _authService.GetRolesAsync(user);
+            if (response.Succeeded && getRole.Contains("customer"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -34,7 +36,7 @@ namespace Geziyoruz.WebUI.Controllers
         {
             bool response = (await _authService.CustomerRegisterAsync(customerRegisterDto)).Succeeded;
             
-            return RedirectToAction("Home", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
