@@ -3,16 +3,15 @@
     Layout = null;
 }
 
-@model List<BlogPostDto>
-
+@model BlogPostDto
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gezi Blogu</title>
-    <link rel="stylesheet" href="~/css/index.css">
+    <title>@Model.Title</title>
+    <link rel="stylesheet" href="~/css/travels.css">
 </head>
 <body>
     <header>
@@ -29,20 +28,15 @@
         </div>
     </header>
 
-    <section class="geziler">
+    <section class="gezi-detay">
         <div class="container">
-            <div class="gezi">
-                @foreach (BlogPostDto blogPostDto in Model)
-                {
-                    <a href="~/Home/Travels/@blogPostDto.Id">
-                    <img src="data:image/jpeg;base64,@blogPostDto.Picture" alt="Gezi Fotoğrafı 1">
-                    <div class="content">
-                        <h2>@blogPostDto.Title</h2>
-                    </div>
-                    </a>
-                }
+            <div class="gezi-detay-content">
+                <img src="~/data:image/jpeg;base64,@Model.Picture" alt="Gezi Fotoğrafı 1">
+                <div class="gezi-detay-text">
+                    <h2>@Model.Title</h2>
+                    <p>@Model.Paragraph</p>
+                </div>
             </div>
-            <!-- Diğer geziler buraya eklenebilir -->
         </div>
     </section>
 
@@ -53,5 +47,3 @@
     </footer>
 </body>
 </html>
-
-

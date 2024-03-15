@@ -1,4 +1,5 @@
 ﻿using Geziyoruz.Business.Abstract;
+using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos;
 using Geziyoruz.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,9 +21,10 @@ namespace Geziyoruz.WebUI.Controllers
             return View(_blogPostService.GetAllAsync().Result);
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Travels(int id)
         {
-            return View();
+           BlogPostDto blogPostDto = await _blogPostService.GetByIdAsync(id);
+            return View(blogPostDto);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

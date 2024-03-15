@@ -80,6 +80,8 @@ namespace Geziyoruz.Business.Concrete
         public async Task<BlogPostDto> GetByIdAsync(int id)
         {
             BlogPost blogPost = await _unitOfWork.BlogPostDal.GetAsync(x => x.Id == id);
+            List<Picture> picture = new();
+            blogPost.Picture = picture;
             return _mapper.Map<BlogPostDto>(blogPost);
         }
 

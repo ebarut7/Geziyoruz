@@ -7,7 +7,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    background-image: url("/img/homeindex.jpg");
 }
 
 .container {
@@ -44,34 +43,30 @@ nav {
                 color: #fff;
             }
 
-.geziler {
+.gezi-detay {
     margin-top: 20px;
 }
 
-.gezi {
-    display: flex;
-    margin-bottom: 20px;
+.gezi-detay-content {
     background-color: #fff;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-    .gezi img {
-        max-width: 200px;
+    .gezi-detay-content img {
+        width: 100%;
         height: auto;
-        margin-right: 20px;
     }
 
-    .gezi .content {
-        flex: 1;
-        padding: 20px;
+.gezi-detay-text {
+    padding: 20px;
+}
+
+    .gezi-detay-text h2 {
+        margin-bottom: 10px;
     }
 
-        .gezi .content h2 {
-            margin-bottom: 10px;
-        }
-
-        .gezi .content p {
-            color: #777;
-        }
+    .gezi-detay-text p {
+        color: #777;
+    }
