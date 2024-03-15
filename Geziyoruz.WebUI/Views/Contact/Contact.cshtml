@@ -29,15 +29,15 @@
     <section class="contact">
         <div class="container">
             <h2>İletişim</h2>
-            <form action="#" method="POST">
+            <form asp-action="Contact" method="POST">
                 <label for="name">Adınız:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="SendDisplayName" required>
 
-                <label for="email">E-posta Adresiniz:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="subject">Konu:</label>
+                <input type="text" id="subject" name="Subject" required>
 
-                <label for="message">Mesajınız:</label>
-                <textarea id="message" name="message" required></textarea>
+                <label for="Body">Mesajınız(Mail adresinize belirtiniz.):</label>
+                <textarea id="Body" name="Body" required></textarea>
 
                 <button type="submit" id="submitBtn">Gönder</button>
             </form>

@@ -6,6 +6,8 @@ using Geziyoruz.Business.DependencyResolvers.Extension;
 using Geziyoruz.Business.Insfrastructure.AutoMapper;
 using Geziyoruz.DataAccess.Concrete.EntityFrameworkCore.Context;
 using Geziyoruz.Entities.Concrete;
+using Geziyoruz.WebUI.Business.Manager;
+using Geziyoruz.WebUI.Business.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,6 +43,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(
       }
     ).AddEntityFrameworkStores<GeziyoruzContext>();
 
+builder.Services.AddScoped<IMailService, MailManager>();
 
 var app = builder.Build();
 
