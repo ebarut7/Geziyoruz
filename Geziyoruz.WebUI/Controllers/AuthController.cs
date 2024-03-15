@@ -66,5 +66,12 @@ namespace Geziyoruz.WebUI.Controllers
             }
             return RedirectToAction("Login");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SignOut()
+        {
+            await _authService.SignOutAsync();
+            return View("Login");
+        }
     }
 }

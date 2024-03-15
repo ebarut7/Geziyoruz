@@ -22,10 +22,11 @@
             </ul>
             <div class="footer">
                 <ul>
-                    <li><a href="#">Anasayfa</a></li>
-                    <li><a href="#">Hakkımda</a></li>
-                    <li><a href="#">İletişim</a></li>
-                    <li><a href="#" onclick="logout()">Çıkış</a></li>
+                    <li><a href="/Home/Index">Anasayfa</a></li>
+                    <li><a href="/Home/AboutUs">Hakkımda</a></li>
+                    <li><a href="/Contact/Contact">İletişim</a></li>
+                    <li><a href="/Admin/GetPost">Guncelle</a></li>
+                    <li><a href="/Auth/SignOut" onclick="logout()">Çıkış</a></li>
                 </ul>
             </div>
         </div>
@@ -45,7 +46,7 @@
                         <label for="content">İçerik:</label>
                         <textarea id="content" name="Paragraph" rows="6"></textarea>
                     </div>
-                    <button type="submit">Gönder</button>
+                    <button type="submit">Gönder</button>                
                 </form>
             </div>
         </div>

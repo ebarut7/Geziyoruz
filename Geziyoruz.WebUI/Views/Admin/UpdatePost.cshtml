@@ -1,0 +1,61 @@
+﻿@using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos
+@{
+    Layout = null;
+}
+
+@model BlogPostDto
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Gezi Blogu</title>
+    <link rel="stylesheet" href="~/css/updatepost.css">
+@*     <script src="~/js/contact.js" defer></script> *@
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gezi Blogu</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="#">Geziler</a></li>
+                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <form asp-action="UpdatePost" method="post" data-ajax="true" data-ajax-method="POST" data-ajax-complete="updateBlogPost" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="foto">Fotoğraf:</label>
+                    <input type="file" id="foto" name="Pictures" accept="image/jpeg,image/jpg,image/png">
+                </div>
+                <div class="form-group">
+                    <label for="title">Başlık:</label>
+                    <input type="text" id="title" name="Title" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <label for="content">İçerik:</label>
+                    <input type="text" id="paragraph" name="Paragraph" value="@Model.Paragraph">
+                </div>
+                <button type="submit">Gönder</button>
+                @Html.ActionLink("Sil","DeletePost",new {id=Model.Id})
+                
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Tüm hakları saklıdır. &copy; 2024 Gezi Blogu</p>
+        </div>
+    </footer>
+</body>
+</html>

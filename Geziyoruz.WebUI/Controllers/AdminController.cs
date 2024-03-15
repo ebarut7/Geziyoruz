@@ -33,7 +33,38 @@ namespace Geziyoruz.WebUI.Controllers
             return res > 0 ? RedirectToAction("Index","Home") : View();
         }
 
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> GetPost()
+        {
+            List<BlogPostDto> blogPostDtos = await _blogPostService.GetAllAsync();
+            return View(blogPostDtos);
+        }
 
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> UpdatePost(int id)
+        {
+            List<BlogPostDto> blogPostDtos= await _blogPostService.GetAllAsync();
+            BlogPostDto getBlogPost=blogPostDtos.FirstOrDefault(x => x.Id == id);
+            return View(getBlogPost);
+        }
+        [HttpPost]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> UpdatePost(BlogPostDto blogPostDto)
+        {
+            var res = await _blogPostService.UpdateAsync(blogPostDto);
+
+            return res > 0 ? RedirectToAction("Panel"): View(blogPostDto);
+        }
+
+        [HttpGet]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            int res = await _blogPostService.DeleteAsync(id);
+            return res > 0 ? RedirectToAction("Panel"): View();
+        }
 
     }
 }

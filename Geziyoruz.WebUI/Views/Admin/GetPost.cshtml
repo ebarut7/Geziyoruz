@@ -1,0 +1,57 @@
+﻿@using Geziyoruz.Entities.Concrete.Dtos.BlogPostDtos
+@{
+    Layout = null;
+}
+
+@model List<BlogPostDto>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gezi Blogu</title>
+    <link rel="stylesheet" href="~/css/index.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gezi Blogu</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="/Home/BuyTravel">Geziler</a></li>
+                    <li><a href="about.html">Hakkımızda</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="geziler">
+        <div class="container">
+            <div class="gezi">
+                @foreach (BlogPostDto blogPostDto in Model)
+                {
+                    <a href="~/Home/Travels/@blogPostDto.Id">
+                        <img src="data:image/jpeg;base64,@blogPostDto.Picture" alt="Gezi Fotoğrafı 1">
+                        <div class="content">
+                            <h2>@blogPostDto.Title</h2>
+                        </div>
+                        @Html.ActionLink("Guncelle","UpdatePost",new {id=blogPostDto.Id})
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Tüm hakları saklıdır. &copy; 2024 Gezi Blogu</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
